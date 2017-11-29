@@ -132,4 +132,9 @@ ACCOUNT_ACTIVATEION_DAYS = 7
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
-    
+    EMAIL_HOST = ''
+    EMAIL_PORT = ''
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+
+LOGIN_REDIRECT_URL = 'home'
