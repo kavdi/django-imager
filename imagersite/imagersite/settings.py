@@ -128,7 +128,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-ACCOUNT_ACTIVATION_DAYS = 7
+MEDIA_ROOT = os.path.join(BASE_DIR, 'imager_images/media')
+
+MEDIA_URL = '/media/'
+
+ACCOUNT_ACTIVATEION_DAYS = 7
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
