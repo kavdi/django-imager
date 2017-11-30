@@ -1,8 +1,13 @@
+"""Models for imager profile."""
 from django.db import models
 from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField
-from phonenumber_field.modelfields import PhoneNumberField
 
+from phonenumber_field.modelfields import PhoneNumberField
+import uuid
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class ImagerProfile(models.Model):
@@ -47,5 +52,14 @@ class ImagerProfile(models.Model):
         default='Color',
     )
     user = models.OneToOneField(User, related_name='profile')
+    # user_id = models.UUIDField(default=uuid.uuid4, editable=False)
 
     is_active = models.BooleanField(default=True)
+
+
+@receiver(post_save, sender=User)
+def attach_photographer(instance, **kwargs):
+    """Save the user model."""
+    if kwargs['created']:
+        profile = ImagerProfile(user=kwargs['instance'])
+        profile.save()
