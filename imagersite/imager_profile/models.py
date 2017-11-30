@@ -52,7 +52,7 @@ class ImagerProfile(models.Model):
         default='Color',
     )
     user = models.OneToOneField(User, related_name='profile')
-    user_id = models.UUIDField(default=uuid.uuid4, editable=False)
+    # user_id = models.UUIDField(default=uuid.uuid4, editable=False)
 
     is_active = models.BooleanField(default=True)
 
@@ -60,7 +60,6 @@ class ImagerProfile(models.Model):
 @receiver(post_save, sender=User)
 def attach_photographer(instance, **kwargs):
     """Save the user model."""
-    import pdb; pdb.set_trace()
     if kwargs['created']:
         profile = ImagerProfile(user=kwargs['instance'])
         profile.save()

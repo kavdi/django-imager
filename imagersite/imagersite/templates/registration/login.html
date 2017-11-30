@@ -1,6 +1,7 @@
 {% extends 'imagersite/base.html' %}
 
-{% block login_content %}
+
+{% block content %}
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
