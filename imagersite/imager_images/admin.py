@@ -1,3 +1,3 @@
 from django.contrib import admin
-from imager_images import Photo, Album
+from imager_images.models import Photo, Album
 # Register your models here.

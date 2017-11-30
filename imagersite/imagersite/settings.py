@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'imager_profile',
     'imagersite',
+    'imager_images',
 ]
 
 MIDDLEWARE = [
