@@ -129,6 +129,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+
+PHONENUMBER_DEFAULT_REGION = 'US'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'imager_images/media')
 
 MEDIA_URL = '/media/'
