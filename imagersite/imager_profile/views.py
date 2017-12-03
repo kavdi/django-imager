@@ -22,51 +22,66 @@ def login(request):
     return render(request, 'imagersite/login.html')
 
 
+def register_view(request):
+    """Register view callable."""
+    return render(request)
+
+
 # create profile view, library page, album view, photo view
 
 class ProfileView(ListView):
     """Private profile page view."""
+
     template_name = 'imagersite/profile.html'
     model = ImagerProfile
 
     def get_context_data(self, **kwargs):
         """Setup page."""
         context = super(ProfileView, self).get_context_data(**kwargs)
-        context['view'].request.user.imagerprofile
-        context['']
+        # import pdb; pdb.set_trace()
+        context['username'] = context['view'].request.user.profile.user
+        context['website'] = context['view'].request.user.profile.website
+        context['location'] = context['view'].request.user.profile.location
+        context['fee'] = context['imagerprofile_list'][1].fee
+        context['camera'] = context['imagerprofile_list'][1].camera
+        context['services'] = context['imagerprofile_list'][1].services
+        context['bio'] = context['imagerprofile_list'][1].bio
+        context['phone'] = context['imagerprofile_list'][1].phone_number
+        context['photo_style'] = context['imagerprofile_list'][1].photo_style
+        return context
 
 
 
 
 #View from Chris
-class ProfileView(ListView):
-    """Privet profile page."""
+# class ProfileView(ListView):
+#     """Privet profile page."""
 
-    template_name = "imagersite/profile.html"
-    model = ImagerProfile
+#     template_name = "imagersite/profile.html"
+#     model = ImagerProfile
 
-    def get_context_data(self, **kwargs):
-        """Setup context for page."""
-        context = super(ProfileView, self).get_context_data(**kwargs)
-        # import pdb; pdb.set_trace()
-        context['phone'] = context['imagerprofile_list'][1].phone_number
-        # context['pub_pics'] = (ImagerPhoto.objects
-        #                        .filter(user=self.request.user)
-        #                        .filter(published='PB')).count()
-        # context['pub_albums'] = (ImagerAlbum.objects
-        #                          .filter(user=self.request.user)
-        #                          .filter(published='PB')).count()
-        # context['prv_pics'] = (ImagerPhoto.objects
-        #                        .filter(user=self.request.user)
-        #                        .filter(published='PV')).count()
-        # context['prv_albums'] = (ImagerAlbum.objects
-        #                          .filter(user=self.request.user)
-        #                          .filter(published='PV')).count()
-        # context['profile'] = context['view'].request.user.imagerprofile
-        # context['camera'] = context['profile'].get_camera_type_display()
-        # context['photostyle'] = context['profile'].get_photo_style_display()
-        # context['location'] = (context['profile'].city + ', ' + context['profile'].state)
-        return context
+#     def get_context_data(self, **kwargs):
+#         """Setup context for page."""
+#         context = super(ProfileView, self).get_context_data(**kwargs)
+#         # import pdb; pdb.set_trace()
+#         context['phone'] = context['imagerprofile_list'][1].phone_number
+#         context['pub_pics'] = (ImagerPhoto.objects
+#                                .filter(user=self.request.user)
+#                                .filter(published='PB')).count()
+#         context['pub_albums'] = (ImagerAlbum.objects
+#                                  .filter(user=self.request.user)
+#                                  .filter(published='PB')).count()
+#         context['prv_pics'] = (ImagerPhoto.objects
+#                                .filter(user=self.request.user)
+#                                .filter(published='PV')).count()
+#         context['prv_albums'] = (ImagerAlbum.objects
+#                                  .filter(user=self.request.user)
+#                                  .filter(published='PV')).count()
+#         context['profile'] = context['view'].request.user.imagerprofile
+#         context['camera'] = context['profile'].get_camera_type_display()
+#         context['photostyle'] = context['profile'].get_photo_style_display()
+#         context['location'] = (context['profile'].city + ', ' + context['profile'].state)
+#         return context
 
 
 

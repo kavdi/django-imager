@@ -19,13 +19,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
-from imager_profile.views import home_view, ProfileView, ProfileEditView
+from imager_profile.views import home_view, register_view, ProfileView, ProfileEditView
 
 
 urlpatterns = [
     url(r'^$', home_view, name='homepage'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^accounts/register/', register_view, name='register'),
     url(r'^login/', auth_views.login, name='login'),
     url(r'^logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^profile/$', ProfileView.as_view(), name='profile'),

@@ -3,6 +3,16 @@
 {% block content %}
 <div>
     <p>Here at the profile page.</p>
-    <p>phone number {{ phone }}</p>
+    <ul>
+        <li>User {{ username }}</li>
+        <li>Phone Number {{ phone }}</li>
+        <li>Website {{ website}}</li>
+        <li>Location {{ location }}</li>
+        <li>Price {{ fee }}</li>
+        <li>Camera {{ camera }}</li>
+        <li>bio {{ bio }}</li>
+        <li>Services {{ services }}</li>
+        <li>Photo Styles {{ photo_style }}</li>
+    </ul>
 </div>
 {% endblock %}
