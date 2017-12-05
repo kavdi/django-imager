@@ -1,19 +1,52 @@
-
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 <head>
-    <title>imagersite</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Imagersite</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+    <link rel="stylesheet" href="{% static 'main.css' %}" type="text/css">
+
+
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'homepage' %}">Home</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-        </ul>
-    </nav>
-    {% block content %}{% endblock %}
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'homepage' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'auth_logout' %}">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="{% url 'registration_register' %}">Register</a>
+      </li>
+    </ul>
 
+<div class="container gallery-container">
+
+    <h1>Bootstrap 3 Gallery</h1>
+
+    <p class="page-description text-center">Grid Layout With Zoom Effect</p>
+    
+    <div class="tz-gallery">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+<script>
+    baguetteBox.run('.tz-gallery');
+</script>
 </body>
 </html>

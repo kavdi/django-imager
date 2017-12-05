@@ -129,13 +129,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'), '/var/www/static/'
+]
+
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 
 PHONENUMBER_DEFAULT_REGION = 'US'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'imager_images/media')
-
 MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
 
 ACCOUNT_ACTIVATEION_DAYS = 7
 
@@ -148,3 +152,4 @@ else:
     EMAIL_HOST_PASSWORD = ''
 
 LOGIN_REDIRECT_URL = 'homepage'
+LOGOUT_REDIRECT_URL = 'homepage'
