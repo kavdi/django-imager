@@ -10,10 +10,13 @@
     </div>
     {% else %}
     <div class="col-sm-6 col-md-4">
-        <a class="lightbox" href="#">
+        <a class="lightbox" href="{{ photo.file.url }}">
             <img src="{{ photo.file.url }}">
         </a>
     </div>
     {% endif %}
+    <a class="nav-link active" href="{% url 'library' %}">Library</a>
+    <a class="nav-link active" href="{% url 'all_albums' %}">Albums</a>
+    <a class="nav-link active" href="{% url 'all_photos' %}">Photos</a>
 </div>
 {% endblock %}

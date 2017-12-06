@@ -129,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIFILES_DIRS = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'), '/var/www/static/'
 ]
 
@@ -141,7 +141,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
 
-ACCOUNT_ACTIVATEION_DAYS = 7
+ACCOUNT_ACTIVATION_DAYS = 7
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

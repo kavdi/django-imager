@@ -4,15 +4,15 @@
 <div>
     <p>Here at the profile page.</p>
     <ul>
-        <li>User {{ username }}</li>
-        <li>Phone Number {{ phone }}</li>
-        <li>Website {{ website}}</li>
-        <li>Location {{ location }}</li>
-        <li>Price {{ fee }}</li>
-        <li>Camera {{ camera }}</li>
-        <li>bio {{ bio }}</li>
-        <li>Services {{ services }}</li>
-        <li>Photo Styles {{ photo_style }}</li>
+        <li>User {{ profile.user.username }}</li>
+        <li>Phone Number {{ profile.phone_number }}</li>
+        <li>Website {{ profile.website}}</li>
+        <li>Location {{ profile.location }}</li>
+        <li>Price {{ profile.fee }}</li>
+        <li>Camera {{ profile.camera }}</li>
+        <li>bio {{ profile.bio }}</li>
+        <li>Services {{ profile.services }}</li>
+        <li>Photo Styles {{ profile.photo_style }}</li>
     </ul>
 </div>
 {% endblock %}

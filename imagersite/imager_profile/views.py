@@ -7,15 +7,6 @@ from django.urls import reverse_lazy
 from random import choice
 
 
-# Create your views here.
-
-
-# def home_view(request):
-#     """Home view callable, for the home page."""
-
-#     return render(request, 'imagersite/home.html')
-
-
 class HomeView(TemplateView):
     """Set up view for home page."""
     template_name = 'imagersite/home.html'
@@ -40,15 +31,21 @@ class ProfileView(DetailView):
     def get_object(self):
         """Get current user profile."""
         user = self.request.user.profile
+        import pdb; pdb.set_trace()
         return user
 
 
 class OtherProfileView(DetailView):
-    """Set up profile view for other useres."""
+    """Set up profile view for other usere."""
     template_name = 'imagersite/profile.html'
     model = ImagerProfile
-    slug_field = 'user__username'
     context_object_name = 'profile'
+
+    def get_object(self, **kwargs):
+        """Get specific profile data."""
+        obj = super(OtherProfileView, self).get_object(**kwargs)
+        obj['profile'] = ImagerProfile.get(id=self.kwargs['pk'])
+        return obj
 
 
 class ProfileEditView(UpdateView):

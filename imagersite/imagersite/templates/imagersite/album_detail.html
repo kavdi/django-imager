@@ -2,9 +2,16 @@
 {% block content %}
 <div>
     <div class="col-sm-6 col-md-4">
-        <a class="lightbox" href="#">
-            <img src="{{ album }}">
+        <a class="lightbox" href="{{ album.cover_photo.file.url }}">
+            <img src="{{ album.cover_photo.file.url }}">
         </a>
     </div>       
 </div>   
+{% for photo in photos %}
+<div class="col-sm-6 col-md-4">
+    <a class="lightbox" href="{{ photo.file.url }}">
+        <img src="{{ photo.file.url }}">
+    </a>
+</div>    
+{% endfor %}
 {% endblock %}

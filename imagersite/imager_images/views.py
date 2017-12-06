@@ -1,6 +1,5 @@
 from imager_images.models import Album, Photo
-from django.views.generic import DetailView, TemplateView, ListView
-from django.urls import reverse_lazy
+from django.views.generic import DetailView, ListView
 
 
 class LibraryView(ListView):
@@ -44,17 +43,26 @@ class PhotoView(ListView):
         return context
 
 
-class AlbumDetailView(DetailView):
+class AlbumDetailView(ListView):
     """Set up a detail ablum view."""
     template_name = 'imagersite/album_detail.html'
     model = Album
-    slug_field = 'title'
-    context_object_name = 'album'
+
+    def get_context_data(self):
+        """Get the album and photos."""
+        album = Album.objects.get(id=self.kwargs['pk'])
+        photos = album.photos.all()
+        return {'album': album, 'photos': photos}
 
 
 class PhotoDetailView(DetailView):
     """Set up a detail photo view."""
     template_name = 'imagersite/photo_detail.html'
     model = Photo
-    slug_field = 'title'
     context_object_name = 'photo'
+
+    def get_context_data(self, **kwargs):
+        """Get photo by id."""
+        context = super(PhotoDetailView, self).get_context_data(**kwargs)
+        context['photo'] = Photo.objects.get(id=self.kwargs['pk'])
+        return context
