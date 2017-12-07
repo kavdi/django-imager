@@ -31,21 +31,25 @@ class ProfileView(DetailView):
     def get_object(self):
         """Get current user profile."""
         user = self.request.user.profile
-        import pdb; pdb.set_trace()
-        return user
+        photos = self.request.user.photos.all()
+        public = len(photos.filter(published="Public"))
+        private = len(photos.filter(published="Private"))
+        return {'user': user, 'public': public, 'private': private}
 
 
 class OtherProfileView(DetailView):
     """Set up profile view for other usere."""
-    template_name = 'imagersite/profile.html'
+    template_name = 'imagersite/dif_profile.html'
     model = ImagerProfile
     context_object_name = 'profile'
+    slug_field = "user__username"
 
-    def get_object(self, **kwargs):
-        """Get specific profile data."""
-        obj = super(OtherProfileView, self).get_object(**kwargs)
-        obj['profile'] = ImagerProfile.get(id=self.kwargs['pk'])
-        return obj
+    def get_context_data(self, **kwargs):
+        context = super(OtherProfileView, self).get_context_data(**kwargs)
+        import pdb; pdb.set_trace()
+        context['user'] = context['profile'].user
+        context['photos'] = context['profile'].user.photos.all()
+        return context
 
 
 class ProfileEditView(UpdateView):
