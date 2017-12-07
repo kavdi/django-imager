@@ -46,7 +46,6 @@ class OtherProfileView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(OtherProfileView, self).get_context_data(**kwargs)
-        import pdb; pdb.set_trace()
         context['user'] = context['profile'].user
         context['photos'] = context['profile'].user.photos.all()
         return context
