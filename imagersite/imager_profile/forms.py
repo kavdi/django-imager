@@ -1,6 +1,6 @@
 """Form file for editing."""
 from django import forms
-from django.contrib.auth.models import User
+from imager_profile.models import ImagerProfile
 
 
 class ProfileForm(forms.ModelForm):
@@ -8,6 +8,5 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         """."""
-
-        model = User
-        fields = []
+        model = ImagerProfile
+        exclude = ['user', 'is_active']

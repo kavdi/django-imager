@@ -1,6 +1,7 @@
 """Views for site."""
 from imager_profile.models import ImagerProfile
-from imager_images.models import Album, Photo
+from imager_profile.forms import ProfileForm
+from imager_images.models import Photo
 from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
@@ -53,11 +54,14 @@ class OtherProfileView(DetailView):
 
 class ProfileEditView(UpdateView):
     """View for editing the users profile."""
+    import pdb; pdb.set_trace()
     template_name = 'imagersite/edit.html'
     model = ImagerProfile
     success_url = reverse_lazy('profile')
-    fields = ['website', 'location', 'fee', 'camera', 'services', 'bio', 'phone_number', 'photo_style']
+    form = ProfileForm
 
-    def get_object(self):
-        """Return the user."""
-        return self.request.user.profile
+    def form_valid(self, form):
+        """."""
+        self.object = form.save(commit=False)
+        self.object.save()
+        return super(UpdateView, self).form_valid(form)
