@@ -54,7 +54,6 @@ class OtherProfileView(DetailView):
 
 class ProfileEditView(UpdateView):
     """View for editing the users profile."""
-    import pdb; pdb.set_trace()
     template_name = 'imagersite/edit.html'
     model = ImagerProfile
     success_url = reverse_lazy('profile')
