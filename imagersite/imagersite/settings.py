@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'imager_profile',
     'imagersite',
+    'imager_images',
 ]
 
 MIDDLEWARE = [
@@ -128,11 +129,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'imager_images/media')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'), '/var/www/static/'
+]
+
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+
+PHONENUMBER_DEFAULT_REGION = 'US'
 
 MEDIA_URL = '/media/'
 
-ACCOUNT_ACTIVATEION_DAYS = 7
+MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
+
+ACCOUNT_ACTIVATION_DAYS = 7
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -143,3 +152,4 @@ else:
     EMAIL_HOST_PASSWORD = ''
 
 LOGIN_REDIRECT_URL = 'homepage'
+LOGOUT_REDIRECT_URL = 'homepage'

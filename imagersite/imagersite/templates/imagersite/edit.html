@@ -1,0 +1,17 @@
+{% extends 'imagersite/base.html' %}
+
+{% block content %}
+<div>
+    <p>Here at the home page.</p>
+    <form type="submit" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <p>
+           <label for="phone">
+               Phone Number:{{ phone }}
+           </label> 
+           <input type="text" name="phonenumber" value="{{ user.profile.phone_number }}">
+        </p>
+    </form>
+    <p>phone number {{ phone }}</p>
+</div>
+{% endblock %}

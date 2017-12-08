@@ -1,0 +1,10 @@
+{% extends 'imagersite/base.html' %}
+{% block content %}
+<div>
+    <div class="col-sm-6 col-md-4">
+        <a class="lightbox" href="{{ photo.file.url }}">
+            <img src="{{ photo.file.url }}">
+        </a>
+    </div>       
+</div>   
+{% endblock %}

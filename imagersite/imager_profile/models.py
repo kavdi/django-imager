@@ -10,11 +10,13 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 # Create your models here.
+
+
 class ImagerProfile(models.Model):
     """Create user profile."""
-    website = models.URLField(max_length=150)
-    location = models.CharField(max_length=200, blank=True, null=True)
-    fee = models.DecimalField(decimal_places=2, max_digits=6, blank=False)
+    website = models.URLField(max_length=150, blank=True, null=True)
+    location = models.CharField(max_length=200, blank=True, default='')
+    fee = models.DecimalField(decimal_places=2, max_digits=6, default=0.00)
     camera_choices = [
         ('Nikon', 'Nikon'),
         ('Canon', 'Canon'),
@@ -33,12 +35,12 @@ class ImagerProfile(models.Model):
         ('Portrait', 'Portrait')
     ]
     services = MultiSelectField(
-        max_length=10,
+        max_length=50,
         choices=service_options,
         default='Portrait',
     )
-    bio = models.TextField(max_length=1000)
-    phone_number = PhoneNumberField()
+    bio = models.TextField(max_length=1000, blank=True, default='')
+    phone_number = PhoneNumberField(blank=True, default='')
     photo_styles_options = [
         ('Color', 'Color'),
         ('Black_White', 'Black and White'),
@@ -47,7 +49,7 @@ class ImagerProfile(models.Model):
         ('Architecture', 'Architecture'),
     ]
     photo_style = MultiSelectField(
-        max_length=15,
+        max_length=50,
         choices=photo_styles_options,
         default='Color',
     )
@@ -58,7 +60,7 @@ class ImagerProfile(models.Model):
 
 
 @receiver(post_save, sender=User)
-def attach_photographer(instance, **kwargs):
+def attach_photographer(sender, **kwargs):
     """Save the user model."""
     if kwargs['created']:
         profile = ImagerProfile(user=kwargs['instance'])

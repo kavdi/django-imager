@@ -1,0 +1,19 @@
+{% extends 'imagersite/base.html' %}
+{% block content %}
+<div>
+    {% for photo in photos %}
+    <div class="col-sm-6 col-md-4">
+        <a class="lightbox" href="{{ photo.file.url }}">
+            <img src="{{ photo.file.url }}">
+        </a>
+    </div>    
+    {% endfor %}
+    {% for album in albums %}
+    <div class="col-sm-6 col-md-4">
+        <a class="lightbox" href="{{ album.cover.file.url }}">
+            <img src="{{ album.cover.file.url }}">
+        </a>
+    </div>    
+    {% endfor %}    
+ </div>   
+{% endblock %}
