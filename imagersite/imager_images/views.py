@@ -74,7 +74,7 @@ class AddAlbumView(CreateView):
     """Create a new album."""
     template_name = 'imager_images/add_album.html'
     model = Album
-    success_url = reverse_lazy('all_albums')
+    success_url = reverse_lazy('library')
     form_class = AlbumForm
 
     def form_valid(self, form):
@@ -87,7 +87,7 @@ class AddPhotoView(CreateView):
     """Create a new photo."""
     template_name = 'imager_images/add_photo.html'
     model = Photo
-    success_url = reverse_lazy('all_photos')
+    success_url = reverse_lazy('library')
     form_class = PhotoForm
 
     def form_valid(self, form):
