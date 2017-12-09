@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 
 class LibraryView(ListView):
     """Set up list view for all albums and pictures."""
-    template_name = 'imagersite/library.html'
+    template_name = 'imager_images/library.html'
     model = Photo
     context_object_name = 'photos'
 
@@ -21,7 +21,7 @@ class LibraryView(ListView):
 
 class AlbumView(ListView):
     """Set up list view for albums."""
-    template_name = 'imagersite/album.html'
+    template_name = 'imager_images/album.html'
     model = Album
     context_object_name = 'albums'
 
@@ -34,7 +34,7 @@ class AlbumView(ListView):
 
 class PhotoView(ListView):
     """Set up list view for photos."""
-    template_name = 'imagersite/photo_view.html'
+    template_name = 'imager_images/photo_view.html'
     model = Photo
     context_object_name = 'photos'
 
@@ -47,7 +47,7 @@ class PhotoView(ListView):
 
 class AlbumDetailView(ListView):
     """Set up a detail ablum view."""
-    template_name = 'imagersite/album_detail.html'
+    template_name = 'imager_images/album_detail.html'
     model = Album
 
     def get_context_data(self):
@@ -59,7 +59,7 @@ class AlbumDetailView(ListView):
 
 class PhotoDetailView(DetailView):
     """Set up a detail photo view."""
-    template_name = 'imagersite/photo_detail.html'
+    template_name = 'imager_images/photo_detail.html'
     model = Photo
     context_object_name = 'photo'
 
