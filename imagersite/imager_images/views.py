@@ -74,13 +74,12 @@ class AddAlbumView(CreateView):
     """Create a new album."""
     template_name = 'imager_images/add_album.html'
     model = Album
-    succes_url = reverse_lazy('all_albums')
+    success_url = reverse_lazy('all_albums')
     form_class = AlbumForm
 
     def form_valid(self, form):
         """."""
-        self.object = form.save(commit=False)
-        self.object.save()
+        form.instance.user = self.request.user
         return super(CreateView, self).form_valid(form)
 
 
@@ -88,11 +87,10 @@ class AddPhotoView(CreateView):
     """Create a new photo."""
     template_name = 'imager_images/add_photo.html'
     model = Photo
-    succes_url = reverse_lazy('all_photos')
+    success_url = reverse_lazy('all_photos')
     form_class = PhotoForm
 
     def form_valid(self, form):
         """Validate the user is allowed to upload photo."""
-        self.object = form.save(commit=False)
-        self.object.save()
+        form.instance.user = self.request.user
         return super(CreateView, self).form_valid(form)
