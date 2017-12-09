@@ -13,7 +13,7 @@
         <li>Services {{ profile.services }}</li>
         <li>Photo Styles {{ profile.photo_style }}</li>
     </ul>
-    {% for photo in profile.photosc %}
+    {% for photo in photos %}
     <div class="col-sm-6 col-md-4">
         <a class="lightbox" href="{{ photo.file.url }}">
             <img src="{{ photo.file.url }}">

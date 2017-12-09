@@ -10,8 +10,8 @@
     {% endfor %}
     {% for album in albums %}
     <div class="col-sm-6 col-md-4">
-        <a class="lightbox" href="{{ album.cover.file.url }}">
-            <img src="{{ album.cover.file.url }}">
+        <a class="lightbox" href="{% url 'detail_album' album.id %}">
+            <img src="{{ album.cover_photo.file.url }}">
         </a>
     </div>    
     {% endfor %}    

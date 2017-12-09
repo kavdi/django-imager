@@ -1,5 +1,7 @@
 from imager_images.models import Album, Photo
-from django.views.generic import DetailView, ListView
+from imager_images.forms import AlbumForm, PhotoForm
+from django.views.generic import DetailView, ListView, CreateView
+from django.urls import reverse_lazy
 
 
 class LibraryView(ListView):
@@ -66,3 +68,31 @@ class PhotoDetailView(DetailView):
         context = super(PhotoDetailView, self).get_context_data(**kwargs)
         context['photo'] = Photo.objects.get(id=self.kwargs['pk'])
         return context
+
+
+class AddAlbumView(CreateView):
+    """Create a new album."""
+    template_name = 'imager_images/add_album.html'
+    model = Album
+    succes_url = reverse_lazy('all_albums')
+    form_class = AlbumForm
+
+    def form_valid(self, form):
+        """."""
+        self.object = form.save(commit=False)
+        self.object.save()
+        return super(CreateView, self).form_valid(form)
+
+
+class AddPhotoView(CreateView):
+    """Create a new photo."""
+    template_name = 'imager_images/add_photo.html'
+    model = Photo
+    succes_url = reverse_lazy('all_photos')
+    form_class = PhotoForm
+
+    def form_valid(self, form):
+        """Validate the user is allowed to upload photo."""
+        self.object = form.save(commit=False)
+        self.object.save()
+        return super(CreateView, self).form_valid(form)
