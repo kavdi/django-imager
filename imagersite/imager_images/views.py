@@ -1,6 +1,7 @@
 from imager_images.models import Album, Photo
 from imager_images.forms import AlbumForm, PhotoForm
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 
@@ -70,7 +71,7 @@ class PhotoDetailView(DetailView):
         return context
 
 
-class AddAlbumView(CreateView):
+class AddAlbumView(LoginRequiredMixin, CreateView):
     """Create a new album."""
     template_name = 'imager_images/add_album.html'
     model = Album
@@ -83,7 +84,7 @@ class AddAlbumView(CreateView):
         return super(CreateView, self).form_valid(form)
 
 
-class AddPhotoView(CreateView):
+class AddPhotoView(LoginRequiredMixin, CreateView):
     """Create a new photo."""
     template_name = 'imager_images/add_photo.html'
     model = Photo
@@ -94,3 +95,21 @@ class AddPhotoView(CreateView):
         """Validate the user is allowed to upload photo."""
         form.instance.user = self.request.user
         return super(CreateView, self).form_valid(form)
+
+
+class AlbumEditView(LoginRequiredMixin, UpdateView):
+    """View for editing the users album."""
+
+    template_name = 'imager_images/album_edit.html'
+    model = Album
+    success_url = reverse_lazy('library')
+    fields = ['title', 'description', 'published']
+
+
+class PhotoEditView(LoginRequiredMixin, UpdateView):
+    """View for editing the users photo."""
+
+    template_name = 'imager_images/photo_edit.html'
+    model = Photo
+    success_url = reverse_lazy('library')
+    fields = ['title', 'decription', 'file', 'published']
