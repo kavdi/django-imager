@@ -4,7 +4,9 @@
 <div>
     <form type="submit" enctype="multipart/form-data" method="post">
         {% csrf_token %}
-        form.as_ul()
+        {{ form.as_p }}
+        <button type="submit">Update</button>
     </form>
 </div>
 {% endblock %}
+

@@ -57,10 +57,8 @@ class ProfileEditView(UpdateView):
     template_name = 'imagersite/edit.html'
     model = ImagerProfile
     success_url = reverse_lazy('profile')
-    form = ProfileForm
+    fields = ['website', 'location', 'fee', 'camera', 'services', 'bio', 'phone_number', 'photo_style']
 
-    def form_valid(self, form):
-        """."""
-        self.object = form.save(commit=False)
-        self.object.save()
-        return super(UpdateView, self).form_valid(form)
+    def get_object(self):
+        """Return the user."""
+        return self.request.user.profile
