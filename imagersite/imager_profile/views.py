@@ -4,6 +4,7 @@ from imager_profile.forms import ProfileForm
 from imager_images.models import Photo
 from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from random import choice
 
@@ -52,7 +53,7 @@ class OtherProfileView(DetailView):
         return context
 
 
-class ProfileEditView(UpdateView):
+class ProfileEditView(LoginRequiredMixin, UpdateView):
     """View for editing the users profile."""
     template_name = 'imagersite/edit.html'
     model = ImagerProfile
