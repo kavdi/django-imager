@@ -102,3 +102,6 @@ ENV/
 
 #bootstrap
 imagersite/bootstrap-files/*
+
+#ansible
+imagersite/ansible
