@@ -1,11 +1,10 @@
 {% extends 'imagersite/base.html' %}
-
 {% block content %}
 <div>
     <form type="submit" enctype="multipart/form-data" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Upload</button>
+    <button type="submit">Update</button>
     </form>
 </div>
 {% endblock %}

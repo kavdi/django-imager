@@ -22,6 +22,7 @@
       <li class="nav-item">
         <a class="nav-link active" href="{% url 'homepage' %}">Home</a>
         {% if request.user.is_authenticated %}
+        <a class="nav-link active" href="{% url 'my_profile' %}">Profile</a>
         <a class="nav-link" href="{% url 'auth_logout' %}">Logout</a>
         {% else %}
         <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
@@ -29,7 +30,13 @@
         {% endif %}
       </li>
       <li>
-        
+        {% if request.user.is_authenticated %}
+        <a class="nav-link active" href="{% url 'library' %}">Library</a>
+        <a class="nav-link active" href="{% url 'all_albums' %}">Albums</a>
+        <a class="nav-link active" href="{% url 'all_photos' %}">Photos</a>
+        {% else %}
+        <h3>Login or register to see more.</h3>
+        {% endif %}
       </li>
     </ul>
   </nav>

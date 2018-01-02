@@ -1,7 +1,14 @@
 {% extends 'imagersite/base.html' %}
 {% block content %}
 <div>
+    <nav>
+        <a class="nav-link" href="{% url 'add_photo' %}">Add Photo</a>
+        <a class="nav-link" href="{% url 'add_album' %}">Create Album</a>
+    </nav>
+</div>
+<div>
     {% for photo in photos %}
+    <h4><a href="{% url 'edit_photo' photo.id %}">Photo</a></h4>
     <div class="col-sm-6 col-md-4">
         <a class="lightbox" href="{{ photo.file.url }}">
             <img src="{{ photo.file.url }}">
@@ -9,6 +16,7 @@
     </div>    
     {% endfor %}
     {% for album in albums %}
+    <h4><a href="{% url 'edit_album' album.id %}">Album</a></h4>
     <div class="col-sm-6 col-md-4">
         <a class="lightbox" href="{% url 'detail_album' album.id %}">
             <img src="{{ album.cover_photo.file.url }}">

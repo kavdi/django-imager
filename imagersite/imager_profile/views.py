@@ -1,9 +1,9 @@
 """Views for site."""
 from imager_profile.models import ImagerProfile
-from imager_profile.forms import ProfileForm
 from imager_images.models import Photo
 from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from random import choice
 
@@ -52,15 +52,13 @@ class OtherProfileView(DetailView):
         return context
 
 
-class ProfileEditView(UpdateView):
+class ProfileEditView(LoginRequiredMixin, UpdateView):
     """View for editing the users profile."""
     template_name = 'imagersite/edit.html'
     model = ImagerProfile
-    success_url = reverse_lazy('profile')
-    form = ProfileForm
-
-    def form_valid(self, form):
-        """."""
-        self.object = form.save(commit=False)
-        self.object.save()
-        return super(UpdateView, self).form_valid(form)
+    success_url = reverse_lazy('my_profile')
+    fields = ['website', 'location', 'fee', 'camera', 'services', 'bio', 'phone_number', 'photo_style']
+    import pdb; pdb.set_trace()
+    def get_object(self):
+        """Return the user."""
+        return self.request.user.profile

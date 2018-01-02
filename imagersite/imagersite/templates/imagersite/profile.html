@@ -16,5 +16,6 @@
         <li>Public Photos {{ profile.public }}</li>
         <li>Private Photos {{ profile.private }}</li>
     </ul>
+    <h4><a href="{% url 'profile_edit' %}">Edit</a></h4>
 </div>
 {% endblock %}
