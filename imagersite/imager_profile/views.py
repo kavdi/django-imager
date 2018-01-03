@@ -58,7 +58,7 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = ImagerProfile
     success_url = reverse_lazy('my_profile')
     fields = ['website', 'location', 'fee', 'camera', 'services', 'bio', 'phone_number', 'photo_style']
-    import pdb; pdb.set_trace()
+
     def get_object(self):
         """Return the user."""
         return self.request.user.profile
