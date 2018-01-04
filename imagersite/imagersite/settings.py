@@ -159,7 +159,3 @@ else:
 
     STATIC_URL = 'https://{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
     MEDIA_URL = 'https://{}/{}/'.format(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
-    EMAIL_HOST = ''
-    EMAIL_PORT = ''
-    EMAIL_HOST_USER = ''
-    EMAIL_HOST_PASSWORD = ''
