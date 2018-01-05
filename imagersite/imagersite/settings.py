@@ -151,6 +151,7 @@ if DEBUG:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'), '/var/www/static/']
 else:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
     AWS_STORAGE_BUCKET_NAME = 'kavdi-d-bucket'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
